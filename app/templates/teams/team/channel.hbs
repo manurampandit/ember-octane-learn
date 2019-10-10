@@ -1,5 +1,7 @@
 <!-- Channel -->
-<main class="flex-1 flex flex-col bg-white overflow-hidden channel">
+<Channel::Container
+@channel={{this.model}} as |messages api|>
+
   <!-- Channel Header -->
   <Channel::Header
    id="channel-header"
@@ -9,7 +11,11 @@
 
   <!-- Channel Message List -->
   <div class="py-4 flex-1 overflow-y-scroll channel-messages-list" role="list">
-    <Channel::Message />
+    {{#each messages as |m|}}
+    <Channel::Message @message={{m}}
+    @delete={{fn api.actions.deleteMessage m.id}}/>
+    {{/each}}
   </div>
-  <Channel::Footer/>
-</main>
+  <Channel::Footer @create={{api.actions.createMessage}}/>
+
+</Channel::Container>
