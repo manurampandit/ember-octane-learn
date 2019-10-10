@@ -15,9 +15,9 @@ module('Acceptance | logout', function(hooks) {
     const authSvc = this.owner.lookup('service:auth');
     authSvc.testingUserId = '1';
 
-    await visit('/teams/linkedin');
+    await visit('/teams/linkedin/recruiting');
 
-    assert.equal(currentURL(), '/teams/linkedin');
+    assert.equal(currentURL(), '/teams/linkedin/recruiting');
 
     await click('.team-sidebar__logout-button');
 
