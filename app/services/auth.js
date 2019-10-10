@@ -11,11 +11,15 @@ export default class AuthService extends Service {
    * @type '@ember/routing'.Router
    */
   @service router;
+  /**
+   * @type {CookieService}
+   */
+  @service cookies;
   _readUserId() {
-    return localStorage.getItem(USER_ID_KEY);
+    return this.cookies.read(USER_ID_KEY);
   }
   _writeUserId(userId){
-    localStorage.setItem(USER_ID_KEY, userId);
+    this.cookies.write(USER_ID_KEY, userId);
   }
 // current User Id
   get currentUserId() {
