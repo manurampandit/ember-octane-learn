@@ -11,9 +11,13 @@ module('Acceptance | logout', function(hooks) {
   })
 
   test('visiting teams page and hit logout redirects to login', async function(assert) {
-    await visit('/teams');
+    // get auth service (will be stub)
+    const authSvc = this.owner.lookup('service:auth');
+    authSvc.testingUserId = '1';
 
-    assert.equal(currentURL(), '/teams');
+    await visit('/teams/linkedin');
+
+    assert.equal(currentURL(), '/teams/linkedin');
 
     await click('.team-sidebar__logout-button');
 
