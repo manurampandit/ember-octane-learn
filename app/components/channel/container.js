@@ -22,6 +22,7 @@ Content-Type: application/json
  */
 export default class ChannelContainerComponent extends Component {
   @service auth;
+  @service notifications;
   constructor() {
     super(...arguments);
     // setTimeout(()=> this.loadMessages(), 2000);
@@ -71,6 +72,10 @@ export default class ChannelContainerComponent extends Component {
 
     //option 2
     this.messages = [...this.messages, newRecord];
+    this.notifications.notify({
+      body:' Success, your message has been saved',
+      color: 'green'
+    });
   }
 
   @action
@@ -86,5 +91,9 @@ export default class ChannelContainerComponent extends Component {
     if (!resp.ok) throw new Error('Trouble deleting messages');
     if (this.isDestroying) return;
     this.messages = this.messages.filter(m => m.id !== messageId);
+    this.notifications.notify({
+      body: 'Success! your message has been deleted',
+      color: 'indigo'
+    });
   }
 }

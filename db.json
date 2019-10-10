@@ -472,6 +472,14 @@
       "userId": "10",
       "createdAt": 1570701594923,
       "id": 61
+    },
+    {
+      "body": "Testsin",
+      "teamId": "angrycat",
+      "channelId": "dominate",
+      "userId": "10",
+      "createdAt": 1570705085524,
+      "id": 62
     }
   ]
 }
